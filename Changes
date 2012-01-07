@@ -1,5 +1,8 @@
 Revision history for BBBS-MRTG
 
+0.02    dd Month 20yy
+    - Start development of v0.02
+
 0.01    13 July 2011
       Derived version v0.01 of BBBS::MRTG from version v1.3 of mrtgbbbs.pl.
 
