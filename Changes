@@ -1,7 +1,9 @@
 Revision history for BBBS-MRTG
 
-0.02    dd Month 20yy
-    - Start development of v0.02
+0.02     7 January 2012
+    - Update and correct copyright years to 2000-2012.
+    - Change variable $first to $first_line in the read_bbbs_mrtg function.
+    - Change variable $second to $second_line in the read_bbbs_mrtg function.
 
 0.01    13 July 2011
       Derived version v0.01 of BBBS::MRTG from version v1.3 of mrtgbbbs.pl.
