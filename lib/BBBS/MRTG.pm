@@ -9,11 +9,11 @@ BBBS::MRTG - Perl Module for reading the MRTG information from the BBBS standard
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 SYNOPSIS
@@ -58,7 +58,7 @@ sub read_bbbs_mrtg {
 
     use IO::Socket;
 
-    my ($host, $type, $socket, $first, $second, $time );
+    my ($host, $type, $socket, $first_line, $second_line, $time );
 
     if ( $ARGV[0] ) {
         $host = $ARGV[0];
@@ -79,14 +79,14 @@ sub read_bbbs_mrtg {
 
     print {$socket} "$type\n";
 
-    $first  = <$socket>;
-    $second = <$socket>;
+    $first_line  = <$socket>;
+    $second_line = <$socket>;
     $time   = <$socket>;
 
     close $socket or die "Unable to close socket.\n";
 
-    print "$first";
-    print "$second";
+    print "$first_line";
+    print "$second_line";
     print "$time\n";
 
     print q{};
@@ -152,7 +152,7 @@ L<http://search.cpan.org/dist/BBBS-MRTG/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2011 Robert James Clay.
+Copyright 2000-2012 Robert James Clay.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published
