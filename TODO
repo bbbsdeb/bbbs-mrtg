@@ -2,16 +2,35 @@ BBBS::MRTG ToDo
 --------------
 
 lib/BBBS/MRTG.pm
+
+
+- Change to instead of printing the data received from the socket like
+  the original script did to returning  either an array or a hash with
+  the information.
+
+- Change the code that was used to check options passed on the command line to
+  options passed in a hash to the read_bbbs_mrtg function.
+
+- Add 'Croak;' to module, so can correct the code using the 'die' to
+  'croak' when attempting to open or close a socket.
+
 - Add error checking for at least the type variable, which should be 
   either "io" or "user".
-- Add option to define the port to use;  if option not defined, then
+
+- Add option to define the port to use; if option not defined, then
   default to the standard port, 16425.
+
 - Add code to allow for blank return values, such as when BBBS is not
   running or is blocked from responding.
+
 - Use POD to add documentation to script: Add better note about the
-  information it is getting from BBBS.  Also refer to the actual section
+  information it is getting from BBBS. Also refer to the actual section
   in the BBBS documentation where it is discussed. And just what MRTG is?
+
+- Move this ToDo file to lib/BBBS/MRTG/ToDo.pod.
+
 - Move example documenation files into a pod file?
+
 
 README
 - Move the BBBS::MRTG operational documentation into the documentation 
