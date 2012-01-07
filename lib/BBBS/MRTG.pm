@@ -58,7 +58,7 @@ sub read_bbbs_mrtg {
 
     use IO::Socket;
 
-    my ($host, $type, $socket, $first, $second, $time );
+    my ($host, $type, $socket, $first_line, $second, $time );
 
     if ( $ARGV[0] ) {
         $host = $ARGV[0];
@@ -79,13 +79,13 @@ sub read_bbbs_mrtg {
 
     print {$socket} "$type\n";
 
-    $first  = <$socket>;
+    $first_line  = <$socket>;
     $second = <$socket>;
     $time   = <$socket>;
 
     close $socket or die "Unable to close socket.\n";
 
-    print "$first";
+    print "$first_line";
     print "$second";
     print "$time\n";
 
