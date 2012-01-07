@@ -152,7 +152,7 @@ L<http://search.cpan.org/dist/BBBS-MRTG/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2011 Robert James Clay.
+Copyright 2000-2012 Robert James Clay.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published
