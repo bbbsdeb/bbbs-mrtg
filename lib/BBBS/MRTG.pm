@@ -3,17 +3,19 @@ package BBBS::MRTG;
 use warnings;
 use strict;
 
+use Carp;
+
 =head1 NAME
 
 BBBS::MRTG - Perl Module for reading the MRTG information from the BBBS standard port.
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 =head1 SYNOPSIS
@@ -75,7 +77,7 @@ sub read_bbbs_mrtg {
         PeerPort => 16_425,        # standard BBBS port
         Proto    => 'tcp',
         Type     => SOCK_STREAM
-    ) or die "Could not open port.\n";
+    ) or croak "Could not open port.\n";
 
     print {$socket} "$type\n";
 
@@ -83,7 +85,7 @@ sub read_bbbs_mrtg {
     $second_line = <$socket>;
     $time   = <$socket>;
 
-    close $socket or die "Unable to close socket.\n";
+    close $socket or croak "Unable to close socket.\n";
 
     print "$first_line";
     print "$second_line";

@@ -1,10 +1,13 @@
 Revision history for BBBS-MRTG
 
+0.03    11 February 2012
+    - Change to useing the Carp module in BBBS/MRTG.pm.
+    - Add filter for .git paths to the t/manifest.t test script.
+
 0.02     7 January 2012
     - Update and correct copyright years to 2000-2012.
     - Change variable $first to $first_line in the read_bbbs_mrtg function.
     - Change variable $second to $second_line in the read_bbbs_mrtg function.
 
 0.01    13 July 2011
-      Derived version v0.01 of BBBS::MRTG from version v1.3 of mrtgbbbs.pl.
-
+    - Derived version v0.01 of BBBS::MRTG from version v1.3 of mrtgbbbs.pl.
