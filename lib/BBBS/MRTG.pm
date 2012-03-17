@@ -62,17 +62,17 @@ sub read_bbbs_mrtg {
 
     use IO::Socket;
 
-    my ($host, $type, $socket, $first_line, $second_line, $time );
+    my ($socket, $first_line, $second_line, $time );
 
     #
     $socket = IO::Socket::INET->new(
-        PeerAddr => $host,
+        PeerAddr => ${$config}{'host'},
         PeerPort => 16_425,        # standard BBBS port
         Proto    => 'tcp',
         Type     => SOCK_STREAM
     ) or croak "Could not open port.\n";
 
-    print {$socket} "$type\n";
+    print {$socket} "${$config}{'type'}\n";
 
     $first_line  = <$socket>;
     $second_line = <$socket>;
