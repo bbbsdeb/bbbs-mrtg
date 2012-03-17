@@ -1,7 +1,8 @@
 Revision history for BBBS-MRTG
 
-0.04    dd month 2012
-    - start development for v0.04
+0.04    17 March 2012
+    - Now pass options to read_bbbs_mrtg using a hash.
+    - Update how the options are used in read_bbbs_mrtg.
 
 0.03    11 February 2012
     - Change to useing the Carp module in BBBS/MRTG.pm.
