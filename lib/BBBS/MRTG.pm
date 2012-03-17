@@ -58,18 +58,11 @@ sub bbbs_mrtg_user {
 
 sub read_bbbs_mrtg {
 
+    my $config = shift;
+
     use IO::Socket;
 
     my ($host, $type, $socket, $first_line, $second_line, $time );
-
-    if ( $ARGV[0] ) {
-        $host = $ARGV[0];
-        $type = $ARGV[1];
-    }
-    else {
-        print {*STDERR} "Usage: $0 <hostname> <io|user>\n";
-        exit 1;
-    }
 
     #
     $socket = IO::Socket::INET->new(
