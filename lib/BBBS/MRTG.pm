@@ -11,11 +11,11 @@ BBBS::MRTG - Perl Module for reading the MRTG information from the BBBS standard
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 
 =head1 SYNOPSIS
@@ -58,28 +58,21 @@ sub bbbs_mrtg_user {
 
 sub read_bbbs_mrtg {
 
+    my $config = shift;
+
     use IO::Socket;
 
-    my ($host, $type, $socket, $first_line, $second_line, $time );
-
-    if ( $ARGV[0] ) {
-        $host = $ARGV[0];
-        $type = $ARGV[1];
-    }
-    else {
-        print {*STDERR} "Usage: $0 <hostname> <io|user>\n";
-        exit 1;
-    }
+    my ($socket, $first_line, $second_line, $time );
 
     #
     $socket = IO::Socket::INET->new(
-        PeerAddr => $host,
+        PeerAddr => ${$config}{'host'},
         PeerPort => 16_425,        # standard BBBS port
         Proto    => 'tcp',
         Type     => SOCK_STREAM
     ) or croak "Could not open port.\n";
 
-    print {$socket} "$type\n";
+    print {$socket} "${$config}{'type'}\n";
 
     $first_line  = <$socket>;
     $second_line = <$socket>;
