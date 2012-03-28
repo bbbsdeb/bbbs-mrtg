@@ -11,11 +11,11 @@ BBBS::MRTG - Perl Module for reading the MRTG information from the BBBS standard
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 
 =head1 SYNOPSIS
@@ -28,7 +28,14 @@ Perhaps a little code snippet.
 
     use BBBS::MRTG;
 
-    my $foo = BBBS::MRTG->new();
+    $options{'host'} = $host;
+    $options{'type'} = 'io';
+
+    $my %bbbs_mrtg = read_bbbs_mrtg(\%options);
+
+    print "Frist line returned was: $bbbs_mrtg{'line_one'};
+    print "Second line returned was: $bbbs_mrtg{'line_two'};
+    print "Time info returned was: $bbbs_mrtg{'time'};
     ...
 
 =head1 EXPORT
@@ -54,6 +61,44 @@ sub bbbs_mrtg_user {
 
 =head2 read_bbbs_mrtg
 
+Syntax: %bbbs_mrtg = read_bbbs_mrtg(\%options);
+
+Read MRTG style data from a BBBS port
+
+The options hash is passed to the function as a reference and should contain
+the following keys:
+
+=over
+
+=item   host
+
+This is the hostname or IP where the BBBS system that is being queried is running.
+
+=item   type
+
+This is the type of query being made: should be either the string 'io' or the
+string 'user'.
+
+=back
+
+The function returns a reference to a hash that contains the following keys:
+
+=over
+
+=item   line_one
+
+This is the first line returned from the BBBS system being queried.
+
+=item   line_two
+
+This is the first line returned from the BBBS system being queried.
+
+=item   time
+
+This is the time information returned from the BBBS system being queried.
+
+=back
+
 =cut
 
 sub read_bbbs_mrtg {
@@ -62,7 +107,7 @@ sub read_bbbs_mrtg {
 
     use IO::Socket;
 
-    my ($socket, $first_line, $second_line, $time );
+    my ($socket, %bbbs_mrtg);
 
     #
     $socket = IO::Socket::INET->new(
@@ -74,19 +119,13 @@ sub read_bbbs_mrtg {
 
     print {$socket} "${$config}{'type'}\n";
 
-    $first_line  = <$socket>;
-    $second_line = <$socket>;
-    $time   = <$socket>;
+    $bbbs_mrtg{'line_one'} = <$socket>;
+    $bbbs_mrtg{'line_two'} = <$socket>;
+    $bbbs_mrtg{'time'} = <$socket>;
 
     close $socket or croak "Unable to close socket.\n";
 
-    print "$first_line";
-    print "$second_line";
-    print "$time\n";
-
-    print q{};
-
-    return;
+    return(\%bbbs_mrtg);
 
 }
 
