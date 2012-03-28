@@ -62,7 +62,7 @@ sub read_bbbs_mrtg {
 
     use IO::Socket;
 
-    my ($socket, $first_line, $second_line, $time );
+    my ($socket, %bbbs_mrtg);
 
     #
     $socket = IO::Socket::INET->new(
@@ -74,19 +74,13 @@ sub read_bbbs_mrtg {
 
     print {$socket} "${$config}{'type'}\n";
 
-    $first_line  = <$socket>;
-    $second_line = <$socket>;
-    $time   = <$socket>;
+    $bbbs_mrtg{'line_one'} = <$socket>;
+    $bbbs_mrtg{'line_two'} = <$socket>;
+    $bbbs_mrtg{'time'} = <$socket>;
 
     close $socket or croak "Unable to close socket.\n";
 
-    print "$first_line";
-    print "$second_line";
-    print "$time\n";
-
-    print q{};
-
-    return;
+    return(\%bbbs_mrtg);
 
 }
 
