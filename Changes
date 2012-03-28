@@ -1,7 +1,8 @@
 Revision history for BBBS-MRTG
 
-0.05    17 March 2012
-    - Start development for v0.05
+0.05    28 March 2012
+    - Change read_bbbs_mrtg to return results as a hash.
+    - Update the read_bbbs_mrtg documentation for its new functionality.
 
 0.04    17 March 2012
     - Now pass options to read_bbbs_mrtg using a hash.
